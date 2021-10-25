@@ -4,12 +4,13 @@ import { ProductDetails } from "./ProductDetails";
 export const ProductsByCategoryList = (props) => {
   const { productType } = props;
   const [productList, setProductList] = useState([]);
-  const [productId, setProductId] = useState(0);
+  const [productId, setProductId] = useState('');
 
   const getproductDetails = (pId) => {
     setProductId(pId);
+    setProductList([]);
   };
-
+  
   useEffect(() => {
     async function fetchProductsByCategory() {
       const URL = `https://fakestoreapi.com/products/category/${productType}`;
@@ -18,6 +19,7 @@ export const ProductsByCategoryList = (props) => {
         const response = await window.fetch(URL);
         const productsList = await response.json();
         setProductList(productsList);
+        setProductId('');
       } catch (error) {
         console.log(`Error fetching products by category:: ${error}`);
       }
@@ -35,7 +37,7 @@ export const ProductsByCategoryList = (props) => {
                 src={product.image}
                 alt={product.title}
                 className="img-fluid card-img-top mt-4"
-                onClick={() => getproductDetails(product.id) }
+                onClick={() => getproductDetails(product.id)}
               />
 
               <div className="card-body">
@@ -45,7 +47,7 @@ export const ProductsByCategoryList = (props) => {
             </div>
           </div>
         ))}
-      {productId && <ProductDetails productId={productId} />  }
+      {productId !== "" && <ProductDetails productId={productId} />}
     </div>
   );
 };

@@ -5,8 +5,8 @@ export const ProductDetails = (props) => {
   const [productDetails, setProductDetails] = useState([]);
 
   const addToCart = () => {
-    console.log("adding to cart")
-  }
+    console.log("adding to cart");
+  };
 
   useEffect(() => {
     async function fetchProductsById() {
@@ -23,6 +23,7 @@ export const ProductDetails = (props) => {
     fetchProductsById();
   }, [productId]);
 
+  console.log("productDetails", productDetails);
   return (
     <>
       {productDetails && (
@@ -33,7 +34,13 @@ export const ProductDetails = (props) => {
             className="img-fluid card-img-top mt-4"
           />
           <p>{productDetails.title}</p>
-          <button type="button" class="btn btn-outline-primary" onClick={addToCart}>
+          <p className="text-primary">{productDetails.category}</p>
+          <p className="text-success">Price :: {productDetails.price}</p>
+          <button
+            type="button"
+            className="btn btn-outline-primary"
+            onClick={addToCart}
+          >
             Add to cart
           </button>
         </div>
