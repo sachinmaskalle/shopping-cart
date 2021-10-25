@@ -1,18 +1,23 @@
-// import "./fonts"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Header } from "./components/Header";
-import { CategoryItem } from "./components/CategoryItem";
+import { Home } from "./components/Home";
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
-    <div>
-      <Header />
-      <main>
-        <div className="container">
-          <CategoryItem />
+    <Router>
+      <div className="App">
+        <Header />
+        <div className="main">
+          <Switch>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
         </div>
-      </main>
-    </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
-
 export default App;

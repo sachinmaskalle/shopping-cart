@@ -26,12 +26,11 @@ export const CategoryItem = () => {
   }, []);
 
   return (
-    <div className="row">
-      <h1>High range of products</h1>
+    <div className="row mt-2">
       {categoryItem.map((listItem) => (
         <div className="col-lg-3" key={listItem}>
           <button
-            className="btn btn-primary"
+            className="btn btn-secondary my-2"
             onClick={(e) => handleClick(e)}
           >
             {listItem}
